@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="100" viewBox="0 0 200 100">
+  <style>
+    .text { font-family: Arial, sans-serif; font-size: 24px; fill: #333; }
+    .heart { fill: #e74c3c; }
+  </style>
+  
+  <!-- 背景の丸 -->
+  <circle cx="100" cy="50" r="48" fill="#f0f0f0" stroke="#ddd" stroke-width="2"/>
+  
+  <!-- "感謝" テキスト -->
+  <text x="100" y="45" class="text" text-anchor="middle">感謝</text>
+  
+  <!-- ハートのアイコン -->
+  <path class="heart" d="M100 70 C95 60 85 55 75 55 C60 55 55

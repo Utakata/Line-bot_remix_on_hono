@@ -1,0 +1,33 @@
+# Cloudflare Workersの設定ファイル
+
+# プロジェクト名
+name = "line-thanks-work-bot-remix"
+
+# メインスクリプトのパス
+main = "src/index.ts"
+
+# 対象となるCloudflare Workersのバージョン
+compatibility_date = "2023-05-18"
+
+# 環境変数の設定
+[vars]
+LINE_CHANNEL_SECRET = ""
+LINE_CHANNEL_ACCESS_TOKEN = ""
+
+# KV名前空間の設定
+kv_namespaces = [
+  { binding = "MY_KV", id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" }
+]
+
+# 開発環境の設定
+[env.development]
+workers_dev = true
+
+# 本番環境の設定
+[env.production]
+workers_dev = false
+route = "https://your-domain.com/line-bot/*"
+zone_id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+# ビルド設定
+[build]

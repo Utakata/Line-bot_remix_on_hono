@@ -1,0 +1,147 @@
+# 共通の制約を定義
+anchors:
+  gas_constraints: &gas_constraints
+    - Google Apps Script (GAS)の制限内で効率的に処理を実行すること
+    - スクリプトプロパティを使用して機密情報を管理すること
+    - 時間駆動型トリガーを適切に設定すること
+
+  line_api_constraints: &line_api_constraints
+    - LINE Messaging APIの仕様に準拠すること
+    - メッセージの送受信を適切に処理すること
+    - ユーザーの認証とセッション管理を行うこと
+
+  gemini_api_constraints: &gemini_api_constraints
+    - Gemini APIを使用してAI分析と応答生成を行うこと
+    - APIの利用制限を考慮した実装を行うこと
+    - エラーハンドリングを適切に実装すること
+
+  spreadsheet_constraints: &spreadsheet_constraints
+    - Google Spreadsheetsを効率的に操作すること
+    - データの整合性を保つこと
+    - 大量のデータ処理に対応できる設計にすること
+
+  security_constraints: &security_constraints
+    - ユーザーデータの保護とプライバシーの確保
+    - 適切なアクセス制御の実装
+    - データの暗号化と安全な通信の確保
+
+  performance_constraints: &performance_constraints
+    - LINEメッセージへの応答時間は5秒以内を目標とすること
+    - 最大1000人のユーザーまで対応可能なスケーラブルな設計にすること
+    - リソースの効率的な利用とパフォーマンスの最適化を行うこと
+
+rules:
+  # プロジェクトルートファイル規則
+  './':
+    - '^\.gitignore$': |
+        GASプロジェクト固有の一時ファイルの除外
+        機密情報を含むファイルの除外
+        ローカル開発環境の設定ファイルの除外
+
+    - '^README\.md$': |
+        プロジェクトの概要と目的
+        主要機能のリスト
+        セットアップ手順
+        使用技術とAPI
+        貢献ガイドライン
+        ライセンス情報
+
+    - '^LICENSE$': |
+        オープンソースライセンスの詳細
+        著作権表示
+        使用条件と制限事項
+
+  # Google Apps Scriptファイル規則
+  '^src/.*\.gs$':
+    - *gas_constraints
+    - *line_api_constraints
+    - *gemini_api_constraints
+    - *spreadsheet_constraints
+    - *security_constraints
+    - *performance_constraints
+    - '^src/main\.gs$': |
+        メイン処理フローの実装
+        LINEイベントハンドラーの定義
+        ユーザー入力の解析と処理
+        AIによる分析と応答生成の統合
+    - '^src/lineBot\.gs$': |
+        LINE Messaging APIとの連携処理
+        メッセージの送受信ロジック
+        ユーザー認証と管理
+    - '^src/spreadsheetManager\.gs$': |
+        Google Spreadsheetsの操作ロジック
+        データの保存と取得
+        統計情報の集計
+    - '^src/aiAnalyzer\.gs$': |
+        Gemini APIを使用したAI分析ロジック
+        感謝メッセージの解析
+        AIコメントの生成
+    - '^src/utils\.gs$': |
+        共通ユーティリティ関数
+        日付処理
+        文字列操作
+        エラーハンドリング
+
+  # 設定ファイル規則
+  '^config/.*\.json$':
+    - '^config/appSettings\.json$': |
+        アプリケーション全体の設定
+        API設定（LINEとGemini）
+        スプレッドシートID
+        リマインド設定
+    - '^config/messages\.json$': |
+        ユーザーへの応答メッセージテンプレート
+        エラーメッセージ
+        ヘルプテキスト
+
+  # ドキュメント規則
+  '^docs/.*\.md$':
+    - '^docs/setup\.md$': |
+        詳細なプロジェクトセットアップ手順
+        必要なAPI資格情報の取得方法
+        GASプロジェクトの設定手順
+        スプレッドシートの初期設定
+    - '^docs/architecture\.md$': |
+        システムアーキテクチャの説明
+        コンポーネント間の関係図
+        データフロー図
+        セキュリティ設計の概要
+    - '^docs/api-integration\.md$': |
+        LINE Messaging APIの使用方法
+        Gemini APIの統合手順
+        APIレスポンスの処理方法
+    - '^docs/troubleshooting\.md$': |
+        一般的な問題とその解決方法
+        デバッグのヒントとテクニック
+        よくある質問と回答
+        GAS特有の制限事項と対処法
+
+  # テストファイル規則
+  '^tests/.*\.gs$':
+    - '^tests/unitTests\.gs$': |
+        ユニットテストの実装
+        主要機能のテストケース
+        モック/スタブの使用方法
+    - '^tests/integrationTests\.gs$': |
+        統合テストの実装
+        エンドツーエンドのシナリオテスト
+        外部APIとの連携テスト
+
+# 非機能要件
+non_functional_requirements:
+  performance:
+    - LINEメッセージへの応答時間は5秒以内
+    - 最大1000人のユーザーまでのスケーラビリティ確保
+    - GASの実行時間制限内での処理完了
+  security:
+    - ユーザーデータの暗号化
+    - 適切なアクセス制御の実装
+    - 定期的なセキュリティ監査の実施
+  reliability:
+    - 99.9%以上の稼働率
+    - データのバックアップと復旧計画の策定
+    - エラー発生時の自動通知システムの構築
+  usability:
+    - 直感的なLINEインターフェース
+    - わかりやすいエラーメッセージと操作ガイド
+    - ユーザーフィードバックに基づく継続的な改善

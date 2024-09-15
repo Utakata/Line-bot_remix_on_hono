@@ -1,0 +1,80 @@
+- Line感謝ワークbot_remix_on_hono:
+    - app:
+        - routes:
+            - _auth:
+                - line-login.tsx: "LINE認証ページのルートコンポーネント"
+                - logout.tsx: "ログアウト処理を行うルートコンポーネント"
+            - dashboard:
+                - index.tsx: "ダッシュボードのメインページ"
+                - profile.tsx: "ユーザープロフィール編集ページ"
+            - gratitude:
+                - index.tsx: "感謝投稿一覧ページ"
+                - new.tsx: "新規感謝投稿ページ"
+                - '$id.tsx': "個別の感謝投稿詳細ページ"
+            - stats:
+                - index.tsx: "統計情報ページ"
+            - api:
+                - webhook:
+                    - line.ts: "LINE Messaging APIウェブフックを処理するAPIルート"
+                - ai:
+                    - analyze.ts: "Gemini APIを使用した感謝メッセージ分析APIルート"
+            - _index.tsx: "アプリケーションのホームページ"
+            - '$catchall.tsx': "404ページなどのフォールバックルート"
+        - components:
+            - Layout.tsx: "アプリケーション全体のレイアウトコンポーネント"
+            - NavBar.tsx: "ナビゲーションバーコンポーネント"
+            - Footer.tsx: "フッターコンポーネント"
+            - gratitude:
+                - GratitudeForm.tsx: "感謝投稿フォームコンポーネント"
+                - GratitudeList.tsx: "感謝投稿一覧コンポーネント"
+                - GratitudeItem.tsx: "個別の感謝投稿表示コンポーネント"
+            - stats:
+                - UserStats.tsx: "ユーザー統計コンポーネント"
+                - OverallStats.tsx: "全体統計コンポーネント"
+        - models:
+            - user.server.ts: "ユーザー関連のサーバーサイドモデル"
+            - gratitude.server.ts: "感謝投稿関連のサーバーサイドモデル"
+        - services:
+            - line.server.ts: "LINE関連のサーバーサイドサービス"
+            - gemini.server.ts: "Gemini API関連のサーバーサイドサービス"
+            - sheets.server.ts: "Google Sheets関連のサーバーサイドサービス"
+        - utils:
+            - session.server.ts: "セッション管理ユーティリティ"
+            - db.server.ts: "データベース接続ユーティリティ"
+            - gratitude-parser.server.ts: "感謝メッセージ解析ユーティリティ"
+        - styles:
+            - global.css: "グローバルスタイル定義"
+            - tailwind.css: "Tailwind CSSのスタイル定義"
+        - entry.client.tsx: "クライアントサイドのエントリーポイント"
+        - entry.server.tsx: "サーバーサイドのエントリーポイント"
+        - root.tsx: "アプリケーションのルートコンポーネント"
+    - public:
+        - favicon.ico: "ファビコン"
+        - images:
+            - logo.svg: "アプリケーションのロゴ"
+    - server:
+        - index.js: "サーバーの設定とミドルウェア"
+    - tests:
+        - integration:
+            - line-auth.test.ts: "LINE認証関連の統合テスト"
+            - gratitude-post.test.ts: "感謝投稿関連の統合テスト"
+        - unit:
+            - gratitude-parser.test.ts: "感謝メッセージ解析ユーティリティのユニットテスト"
+    - .github:
+        - workflows:
+            - ci.yml: "CI/CD設定ファイル"
+    - .env: "環境変数定義ファイル"
+    - .env.example: "環境変数のサンプルファイル"
+    - package.json: "プロジェクトの依存関係とスクリプト定義"
+    - remix.config.js: "Remixの設定ファイル"
+    - remix.env.d.ts: "Remix環境の型定義ファイル"
+    - tailwind.config.js: "Tailwind CSSの設定ファイル"
+    - tsconfig.json: "TypeScriptの設定ファイル"
+    - README.md: "プロジェクトの説明ドキュメント"
+    - vercel.json: "Vercelデプロイメント設定ファイル"
+    - server.bun.ts: "Bun用のサーバー設定ファイル。Honoを使用してBun環境でのサーバーを構築。"
+    - server.lagon.ts: "Lagon用のサーバー設定ファイル。Honoを使用してLagon環境でのサーバーを構築。"
+    - server.node.ts: "Node.js用のサーバー設定ファイル。Honoを使用してNode.js環境でのサーバーを構築。"
+    - server.ts: "汎用サーバー設定ファイル。Honoを使用した基本的なサーバー設定を含む。"
+    - server.workers.ts: "Workersプラットフォーム用のサーバー設定ファイル。Honoを使用してCloudflare Workers環境でのサーバーを構築。"
+    - wrangler.toml: "Cloudflare Workersの設定ファイル"
